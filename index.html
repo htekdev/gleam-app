@@ -437,6 +437,83 @@
     @media (max-width: 480px) {
       section { padding: 64px 5%; }
       .services-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2.4rem; letter-spacing: -1px; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .stat-num { font-size: 1.8rem; }
+      .store-buttons { flex-direction: column; align-items: center; }
+      .store-btn { width: 100%; max-width: 280px; }
+    }
+
+    /* Mobile nav menu */
+    nav.nav-menu-open .nav-links {
+      display: flex; flex-direction: column; align-items: flex-start;
+      position: fixed; top: 70px; left: 0; right: 0; bottom: 0;
+      background: rgba(7,7,26,0.98); backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      padding: 32px 5%; gap: 24px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      z-index: 99;
+    }
+    nav.nav-menu-open .nav-links a { font-size: 1.2rem; }
+    nav.nav-menu-open .nav-cta {
+      display: block; margin-top: 8px; text-align: center; font-size: 1rem; padding: 14px 28px;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Global mobile fixes */
+    * { -webkit-tap-highlight-color: transparent; }
+    body { overflow-x: hidden; max-width: 100vw; }
+    img, video { max-width: 100%; height: auto; }
+    .btn-primary, .btn-secondary, .nav-cta { min-height: 44px; }
+
+    /* ───── SECTION VERSUS */ 
+    #versus { background: var(--navy); }
+    .versus-intro { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
+    .vs-pill {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: var(--radius); padding: 20px;
+      text-align: center; transition: border-color .2s;
+    }
+    .vs-pill:hover { border-color: rgba(245,166,35,.25); }
+    .vs-pill-name { font-size: .78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .vs-pill-status { font-size: .85rem; font-weight: 600; }
+    .status-threat { color: #f47c7c; }
+    .status-limited { color: #f5a623; }
+    .status-niche { color: #7c7cff; }
+    .vs-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius); border: 1px solid var(--card-border); }
+    .vs-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+    .vs-table th {
+      padding: 16px 20px; font-size: .78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--muted); background: rgba(255,255,255,.02);
+      border-bottom: 1px solid var(--card-border); white-space: nowrap;
+    }
+    .vs-table th.gleam-col {
+      background: linear-gradient(135deg, rgba(245,166,35,.12), rgba(245,166,35,.06));
+      color: var(--gold); border-bottom-color: rgba(245,166,35,.3);
+    }
+    .vs-table td {
+      padding: 14px 20px; font-size: .88rem; border-bottom: 1px solid rgba(255,255,255,.04);
+      color: rgba(240,240,248,.7);
+    }
+    .vs-table td:first-child { color: var(--text); font-weight: 600; }
+    .vs-table .gleam-col { background: rgba(245,166,35,.04); }
+    .vs-table tr:last-child td { border-bottom: none; }
+    .vs-table tr:hover td { background: rgba(255,255,255,.02); }
+    .vs-table tr:hover td.gleam-col { background: rgba(245,166,35,.07); }
+    .check { color: #48c78e; font-weight: 700; font-size: 1.1rem; }
+    .cross { color: #f47c7c; font-weight: 700; font-size: 1.1rem; }
+    .partial { color: #f5a623; font-weight: 600; font-size: .85rem; }
+    .vs-table td.gleam-col .check { color: var(--gold); }
+    .vs-cta { text-align: center; margin-top: 36px; }
+    .vs-cta a { color: var(--gold); font-weight: 600; font-size: .95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; border-bottom: 1px dashed rgba(245,166,35,.4); padding-bottom: 2px; }
+    .vs-cta a:hover { border-bottom-style: solid; }
+
+    @media (max-width: 768px) {
+      .versus-intro { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -450,6 +527,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="comparison.html">Research</a></li>
   </ul>
   <a href="#cta" class="nav-cta">Get the App →</a>
   <div class="hamburger" onclick="this.classList.toggle('open')">
@@ -710,6 +788,123 @@
   </div>
 </section>
 
+<!-- VERSUS COMPETITORS -->
+<section id="versus">
+  <div class="section-header">
+    <div class="section-label reveal">Competitive Landscape</div>
+    <h2 class="reveal">How Gleam stacks up</h2>
+    <p class="section-sub reveal">The on-demand detailing space has players — but none with the full package. Here's where the market stands.</p>
+  </div>
+  <div class="versus-intro">
+    <div class="vs-pill reveal">
+      <div class="vs-pill-name">Get Spiffy</div>
+      <div class="vs-pill-status status- Fleet-Focused</div>limited">
+      <p style="font-size:.8rem;color:var(--muted);margin-top:8px;line-height:1.5">VC-backed, strong B2B but limited consumer app. Geo-restricted.</p>
+    </div>
+    <div class="vs-pill reveal reveal-delay-1">
+      <div class="vs-pill-name">Washr / MobileWash</div>
+      <div class="vs-pill-status status-niche">🔷 City-Bound</div>
+      <p style="font-size:.8rem;color:var(--muted);margin-top:8px;line-height:1.5">On-demand but limited cities, no GPS tracking, basic app experience.</p>
+    </div>
+    <div class="vs-pill reveal reveal-delay-2">
+      <div class="vs-pill-name">Traditional Shops</div>
+      <div class="vs-pill-status status-threat">🏚 Appointment Only</div>
+      <p style="font-size:.8rem;color:var(--muted);margin-top:8px;line-height:1.5">Quality varies, you drive to them, no real-time visibility.</p>
+    </div>
+  </div>
+  <div class="vs-table-wrap reveal">
+    <table class="vs-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="gleam-col">✦ Gleam</th>
+          <th>Get Spiffy</th>
+          <th>Washr</th>
+          <th>MobileWash</th>
+          <th>Trad. Shop</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Comes to you (mobile)</td>
+          <td class="gleam-col"><span class="check">✓</span></td>
+          <td><span class="partial">B2B only</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td>Real-time GPS tracking</td>
+          <td class="gleam-col"><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="partial">Limited</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td>Book in under 60 seconds</td>
+          <td class="gleam-col"><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="partial">~3 min</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td>Verified &amp; insured pros</td>
+          <td class="gleam-col"><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="partial">Varies</span></td>
+        </tr>
+        <tr>
+          <td>Subscription / recurring</td>
+          <td class="gleam-col"><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td>Ceramic coating service</td>
+          <td class="gleam-col"><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>National availability</td>
+          <td class="gleam-col"><span class="check">✓</span></td>
+          <td><span class="partial">15 cities</span></td>
+          <td><span class="partial">8 cities</span></td>
+          <td><span class="partial">12 cities</span></td>
+          <td><span class="partial">Local</span></td>
+        </tr>
+        <tr>
+          <td>Starting price</td>
+          <td class="gleam-col" style="color:var(--gold);font-weight:700">$29</td>
+          <td>$40+</td>
+          <td>$35+</td>
+          <td>$25+</td>
+          <td>$75+</td>
+        </tr>
+        <tr>
+          <td>Average app rating</td>
+          <td class="gleam-col" style="color:var(--gold);font-weight:700">★ 4.9</td>
+          <td>★ 4.4</td>
+          <td>★ 3.8</td>
+          <td>★ 3.6</td>
+          <td>N/A</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="vs-cta">
+    <a href="comparison.html">View full competitive analysis & brand research →</a>
+  </div>
+</section>
+
 <!-- TESTIMONIALS -->
 <section id="testimonials">
   <div class="section-header">
@@ -872,6 +1067,16 @@
     });
   }, { threshold: 0.3 });
   document.querySelectorAll('#stats').forEach(el => statsObserver.observe(el));
+
+  // Hamburger menu toggle
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('nav');
+  hamburger?.addEventListener('click', () => {
+    nav.classList.toggle('nav-menu-open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target)) nav.classList.remove('nav-menu-open');
+  });
 
   // Nav scroll effect
   window.addEventListener('scroll', () => {
