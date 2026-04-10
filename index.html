@@ -515,6 +515,196 @@
     @media (max-width: 768px) {
       .versus-intro { grid-template-columns: 1fr; }
     }
+
+    /* ───── APP MOCKUPS ───── */
+    #mockups { background: linear-gradient(180deg, var(--navy-2) 0%, var(--navy) 100%); overflow: hidden; }
+    .mockups-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .mockups-scroll::-webkit-scrollbar { display: none; }
+    .mockups-row {
+      display: flex; gap: 28px; justify-content: center; align-items: flex-end;
+      padding: 44px 40px 56px; min-width: max-content;
+    }
+    .mockup-wrap { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .mockup-screen-label {
+      margin-top: 22px; font-size: .78rem; font-weight: 700; letter-spacing: .8px;
+      color: var(--muted); text-transform: uppercase; text-align: center;
+    }
+    .mockup-screen-sub { font-size: .75rem; color: rgba(124,124,153,.6); margin-top: 4px; text-align: center; }
+
+    .iphone-frame {
+      width: 198px; position: relative;
+      background: linear-gradient(160deg, #2e2e2e 0%, #181818 100%);
+      border-radius: 46px; padding: 11px;
+      box-shadow: 0 60px 120px rgba(0,0,0,.75),
+                  0 20px 40px rgba(0,0,0,.4),
+                  0 0 0 1px rgba(255,255,255,.1),
+                  inset 0 1px 0 rgba(255,255,255,.12),
+                  inset 0 0 30px rgba(0,0,0,.3);
+      transition: transform .4s ease, box-shadow .4s ease;
+    }
+    .iphone-frame:hover { transform: translateY(-8px) !important; box-shadow: 0 80px 140px rgba(0,0,0,.8), 0 0 60px rgba(245,166,35,.12), 0 0 0 1px rgba(245,166,35,.2), inset 0 1px 0 rgba(255,255,255,.12) !important; }
+    .vol-notch { position: absolute; left: -3px; background: #2a2a2a; border-radius: 2px 0 0 2px; width: 3px; }
+    .vol-notch.v1 { top: 76px; height: 28px; }
+    .vol-notch.v2 { top: 114px; height: 28px; }
+    .pwr-notch { position: absolute; right: -3px; top: 96px; height: 48px; background: #2a2a2a; border-radius: 0 2px 2px 0; width: 3px; }
+    .iphone-inner {
+      background: var(--navy); border-radius: 38px; overflow: hidden;
+      position: relative; aspect-ratio: 390/844;
+      border: 1px solid rgba(255,255,255,.05);
+    }
+    .dynamic-island {
+      position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      width: 80px; height: 26px; background: #000; border-radius: 13px; z-index: 20;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.06);
+    }
+    .a-status {
+      display: flex; justify-content: space-between; padding: 46px 16px 0;
+      font-size: 8px; color: rgba(255,255,255,.45); font-weight: 600;
+    }
+    .a-pad { padding: 0 14px; }
+
+    /* screen 1 – home */
+    .s1-bg { background: linear-gradient(180deg, #09091f 0%, #0d0d28 100%); height: 100%; }
+    .s1-greeting { padding: 12px 14px 8px; }
+    .s1-hi { font-size: 10px; font-weight: 800; color: white; }
+    .s1-sub { font-size: 8px; color: rgba(255,255,255,.4); margin-top: 2px; }
+    .s1-loc {
+      margin: 8px 14px; background: rgba(255,255,255,.06); border-radius: 10px;
+      padding: 9px 12px; display: flex; align-items: center; gap: 6px;
+      border: 1px solid rgba(255,255,255,.08); font-size: 8px; color: rgba(255,255,255,.5);
+    }
+    .s1-loc-pin { color: var(--gold); font-size: 10px; }
+    .s1-map {
+      margin: 8px 14px; height: 82px; border-radius: 14px; position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #0a1628, #0d1f3c);
+      border: 1px solid rgba(91,141,238,.15);
+    }
+    .s1-map-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(91,141,238,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(91,141,238,.06) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+    .s1-map-road-h { position: absolute; left: 0; right: 0; top: 40%; height: 1px; background: rgba(91,141,238,.2); }
+    .s1-map-road-v { position: absolute; top: 0; bottom: 0; left: 35%; width: 1px; background: rgba(91,141,238,.2); }
+    .s1-map-pin { position: absolute; top: 24px; left: 40%; font-size: 16px; filter: drop-shadow(0 2px 4px rgba(0,0,0,.5)); }
+    .s1-map-pulse { position: absolute; top: 16px; left: 33%; width: 30px; height: 30px; border-radius: 50%; border: 2px solid rgba(245,166,35,.4); background: rgba(245,166,35,.1); animation: pulse 2s infinite; }
+    .s1-pills { display: flex; gap: 6px; padding: 8px 14px; overflow: hidden; }
+    .s1-pill { padding: 5px 10px; border-radius: 16px; font-size: 7.5px; font-weight: 700; white-space: nowrap; letter-spacing: .3px; }
+    .s1-pill.on { background: rgba(245,166,35,.2); color: var(--gold); border: 1px solid rgba(245,166,35,.35); }
+    .s1-pill.off { background: rgba(255,255,255,.05); color: rgba(255,255,255,.4); border: 1px solid rgba(255,255,255,.08); }
+    .s1-sec { font-size: 7.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,.35); padding: 4px 14px 6px; }
+    .s1-det { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-bottom: 1px solid rgba(255,255,255,.04); }
+    .s1-av { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+    .s1-di { flex: 1; min-width: 0; }
+    .s1-dn { font-size: 8.5px; font-weight: 700; color: white; }
+    .s1-dm { font-size: 7px; color: rgba(255,255,255,.4); margin-top: 1px; }
+    .s1-dp { font-size: 9px; font-weight: 800; color: var(--gold); }
+    .s1-book { margin: 10px 14px; background: linear-gradient(135deg, var(--gold-light), var(--gold)); border-radius: 12px; padding: 10px; text-align: center; font-size: 9px; font-weight: 800; color: #000; letter-spacing: .5px; text-transform: uppercase; }
+    .s1-nav { display: flex; justify-content: space-around; padding: 10px 0 6px; border-top: 1px solid rgba(255,255,255,.06); margin-top: 4px; }
+    .s1-nav-i { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; }
+    .s1-nav-l { font-size: 6px; color: rgba(255,255,255,.3); }
+    .s1-nav-i.active .s1-nav-l { color: var(--gold); }
+
+    /* screen 2 – tracking */
+    .s2-bg { background: linear-gradient(180deg, #060616 0%, #0a0a22 100%); height: 100%; }
+    .s2-banner { margin: 8px 14px; background: linear-gradient(135deg, rgba(245,166,35,.15), rgba(245,166,35,.05)); border: 1px solid rgba(245,166,35,.3); border-radius: 12px; padding: 10px 12px; text-align: center; }
+    .s2-eta-label { font-size: 7.5px; color: var(--gold); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+    .s2-eta-time { font-size: 28px; font-weight: 800; color: white; line-height: 1; letter-spacing: -1px; }
+    .s2-eta-sub { font-size: 7px; color: rgba(255,255,255,.4); margin-top: 3px; }
+    .s2-map {
+      margin: 8px 14px; height: 110px; border-radius: 14px; position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #0a1628, #0f2040);
+      border: 1px solid rgba(91,141,238,.2);
+    }
+    .s2-map-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(91,141,238,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(91,141,238,.06) 1px, transparent 1px); background-size: 18px 18px; }
+    .s2-route { position: absolute; top: 30%; left: 20%; right: 20%; height: 2px; background: linear-gradient(90deg, rgba(91,141,238,.6), rgba(245,166,35,.8)); border-radius: 1px; }
+    .s2-route::before { content: ''; position: absolute; right: -3px; top: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px rgba(245,166,35,.6); animation: ping 1.5s ease-in-out infinite; }
+    .s2-dest-pin { position: absolute; top: 18%; right: 20%; font-size: 14px; }
+    .s2-car { position: absolute; top: 24%; left: 20%; font-size: 14px; animation: drive 3s linear infinite; }
+    @keyframes drive { 0%{left:20%} 80%{left:60%} 100%{left:60%} }
+    @keyframes ping { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:.5} }
+    .s2-steps { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; }
+    .s2-step { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+    .s2-step-dot { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8px; }
+    .s2-step-dot.done { background: var(--green); }
+    .s2-step-dot.active { background: var(--gold); animation: pulse 1.5s infinite; }
+    .s2-step-dot.todo { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); }
+    .s2-step-line { flex: 1; height: 1px; background: rgba(255,255,255,.1); margin: 0 4px; align-self: center; }
+    .s2-step-label { font-size: 6px; color: rgba(255,255,255,.4); text-align: center; max-width: 36px; line-height: 1.3; }
+    .s2-step-label.active-l { color: var(--gold); font-weight: 700; }
+    .s2-det-card { margin: 6px 14px; background: rgba(255,255,255,.05); border-radius: 12px; padding: 10px 12px; border: 1px solid rgba(255,255,255,.08); display: flex; align-items: center; gap: 8px; }
+    .s2-det-av { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), #d4881a); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; position: relative; }
+    .s2-online { position: absolute; bottom: 1px; right: 1px; width: 9px; height: 9px; border-radius: 50%; background: var(--green); border: 1.5px solid var(--navy); }
+    .s2-det-info { flex: 1; }
+    .s2-det-name { font-size: 9px; font-weight: 700; color: white; }
+    .s2-det-stat { font-size: 7.5px; color: rgba(255,255,255,.45); margin-top: 2px; }
+    .s2-contact { display: flex; gap: 6px; }
+    .s2-contact-btn { width: 30px; height: 30px; border-radius: 8px; background: rgba(255,255,255,.07); display: flex; align-items: center; justify-content: center; font-size: 12px; border: 1px solid rgba(255,255,255,.1); }
+
+    /* screen 3 – detailing progress */
+    .s3-bg { background: linear-gradient(180deg, #07071c 0%, #0a0a22 100%); height: 100%; }
+    .s3-head { padding: 8px 14px; }
+    .s3-title { font-size: 10px; font-weight: 800; color: white; }
+    .s3-sub { font-size: 7.5px; color: rgba(255,255,255,.4); margin-top: 2px; }
+    .s3-ring-wrap { display: flex; justify-content: center; padding: 12px 0 8px; }
+    .s3-ring { width: 80px; height: 80px; position: relative; }
+    .s3-ring svg { transform: rotate(-90deg); }
+    .s3-ring-bg { fill: none; stroke: rgba(255,255,255,.06); stroke-width: 6; }
+    .s3-ring-fill { fill: none; stroke: url(#goldGrad); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 220; stroke-dashoffset: 77; }
+    .s3-pct { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
+    .s3-pct-num { font-size: 16px; font-weight: 800; color: white; line-height: 1; }
+    .s3-pct-lab { font-size: 6px; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .5px; }
+    .s3-checklist { padding: 0 14px; display: flex; flex-direction: column; gap: 5px; }
+    .s3-check-row { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 9px; background: rgba(255,255,255,.03); }
+    .s3-check-row.done-row { background: rgba(72,199,142,.06); }
+    .s3-check-row.active-row { background: rgba(245,166,35,.08); border: 1px solid rgba(245,166,35,.2); }
+    .s3-check-icon { width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8px; flex-shrink: 0; }
+    .s3-check-icon.done-i { background: rgba(72,199,142,.2); color: var(--green); }
+    .s3-check-icon.active-i { background: rgba(245,166,35,.2); color: var(--gold); font-size: 6px; }
+    .s3-check-icon.todo-i { background: rgba(255,255,255,.08); color: rgba(255,255,255,.3); font-size: 6px; }
+    .s3-check-text { font-size: 8px; font-weight: 600; flex: 1; }
+    .s3-check-row.done-row .s3-check-text { color: rgba(255,255,255,.6); }
+    .s3-check-row.active-row .s3-check-text { color: white; }
+    .s3-check-row.todo .s3-check-text { color: rgba(255,255,255,.3); }
+    .s3-time-left { margin: 8px 14px; padding: 8px 12px; background: rgba(91,141,238,.08); border-radius: 10px; border: 1px solid rgba(91,141,238,.15); display: flex; justify-content: space-between; align-items: center; }
+    .s3-tl-label { font-size: 7.5px; color: rgba(255,255,255,.4); }
+    .s3-tl-val { font-size: 10px; font-weight: 800; color: var(--blue-accent); }
+
+    /* screen 4 – done */
+    .s4-bg { background: linear-gradient(170deg, #070714 0%, #0d0d20 100%); height: 100%; }
+    .s4-confetti { position: absolute; top: 0; left: 0; right: 0; height: 100px; overflow: hidden; pointer-events: none; }
+    .conf { position: absolute; width: 4px; height: 4px; border-radius: 1px; animation: conffall 3s linear infinite; }
+    @keyframes conffall { 0%{transform:translateY(-10px) rotate(0);opacity:1} 100%{transform:translateY(120px) rotate(360deg);opacity:0} }
+    .s4-icon { text-align: center; padding: 30px 0 8px; font-size: 36px; }
+    .s4-title { text-align: center; font-size: 12px; font-weight: 800; color: white; line-height: 1.3; padding: 0 14px; }
+    .s4-detail-card { margin: 10px 14px; background: rgba(255,255,255,.05); border-radius: 12px; padding: 12px; border: 1px solid rgba(255,255,255,.08); }
+    .s4-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+    .s4-row:last-child { border-bottom: none; }
+    .s4-k { font-size: 7.5px; color: rgba(255,255,255,.4); }
+    .s4-v { font-size: 8px; font-weight: 700; color: white; }
+    .s4-stars { text-align: center; padding: 8px 14px 4px; }
+    .s4-star-prompt { font-size: 8px; color: rgba(255,255,255,.4); margin-bottom: 6px; }
+    .s4-star-row { display: flex; justify-content: center; gap: 6px; font-size: 20px; }
+    .s4-star { color: var(--gold); filter: drop-shadow(0 0 4px rgba(245,166,35,.5)); }
+    .s4-star.empty { color: rgba(255,255,255,.15); filter: none; }
+    .s4-tip { display: flex; gap: 6px; padding: 6px 14px; }
+    .s4-tip-btn { flex: 1; padding: 7px 0; border-radius: 8px; background: rgba(255,255,255,.05); text-align: center; font-size: 8px; font-weight: 700; color: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.1); }
+    .s4-tip-btn.sel { background: rgba(245,166,35,.15); color: var(--gold); border-color: rgba(245,166,35,.35); }
+    .s4-done { margin: 6px 14px; background: linear-gradient(135deg, var(--gold-light), var(--gold)); border-radius: 12px; padding: 11px; text-align: center; font-size: 9px; font-weight: 800; color: #000; text-transform: uppercase; letter-spacing: .5px; }
+
+    @media (max-width: 900px) {
+      .mockups-row { justify-content: flex-start; gap: 20px; padding: 32px 24px 40px; }
+      .iphone-frame { width: 168px; }
+      .mockup-wrap:nth-child(1) .iphone-frame,
+      .mockup-wrap:nth-child(2) .iphone-frame,
+      .mockup-wrap:nth-child(3) .iphone-frame,
+      .mockup-wrap:nth-child(4) .iphone-frame { transform: none; }
+    }
+    @media (max-width: 600px) {
+      .iphone-frame { width: 150px; border-radius: 36px; }
+      .iphone-inner { border-radius: 28px; }
+      .dynamic-island { width: 60px; height: 20px; }
+    }
   </style>
 </head>
 <body>
@@ -641,6 +831,258 @@
       <div class="step-icon">✨<div class="step-num">3</div></div>
       <h3>Sit back and shine</h3>
       <p>A verified pro arrives, details your car, and you get notified when it's done. Pay through the app — tip included.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- APP MOCKUPS -->
+<section id="mockups">
+  <div class="section-header">
+    <div class="section-label reveal">Inside the App</div>
+    <h2 class="reveal">Every screen, built for delight</h2>
+    <p class="section-sub reveal">From booking to a sparkling car — here's the full Gleam journey.</p>
+  </div>
+  <div class="mockups-scroll">
+    <div class="mockups-row">
+
+      <!-- PHONE 1: HOME / BOOK -->
+      <div class="mockup-wrap reveal">
+        <div class="iphone-frame">
+          <div class="vol-notch v1"></div>
+          <div class="vol-notch v2"></div>
+          <div class="pwr-notch"></div>
+          <div class="iphone-inner">
+            <div class="dynamic-island"></div>
+            <div class="s1-bg">
+              <div class="a-status"><span>9:41</span><span>●●● 98%</span></div>
+              <div class="s1-greeting">
+                <div class="s1-hi">Hey Jordan 👋</div>
+                <div class="s1-sub">Where's your car parked?</div>
+              </div>
+              <div class="s1-loc">
+                <span class="s1-loc-pin">�</span>
+                <span>123 Riverside Dr, Austin TX</span>
+              </div>
+              <div class="s1-map">
+                <div class="s1-map-grid"></div>
+                <div class="s1-map-road-h"></div>
+                <div class="s1-map-road-v"></div>
+                <div class="s1-map-pulse"></div>
+                <div class="s1-map-pin">📍</div>
+              </div>
+              <div class="s1-pills">
+                <div class="s1-pill on">🚿 Express</div>
+                <div class="s1-pill off">🪑 Interior</div>
+                <div class="s1-pill off">⭐ Full</div>
+                <div class="s1-pill off">💎 Ceramic</div>
+              </div>
+              <div class="s1-sec">Nearby Pros</div>
+              <div class="s1-det">
+                <div class="s1-av" style="background:linear-gradient(135deg,#f5a623,#d4881a)">🧔</div>
+                <div class="s1-di">
+                  <div class="s1-dn">Marcus T.</div>
+                  <div class="s1-dm">★ 4.98 · 0.8mi · Ready now</div>
+                </div>
+                <div class="s1-dp">$39</div>
+              </div>
+              <div class="s1-det">
+                <div class="s1-av" style="background:linear-gradient(135deg,#5b8dee,#3a6dd8)">👩</div>
+                <div class="s1-di">
+                  <div class="s1-dn">Diana S.</div>
+                  <div class="s1-dm">★ 4.95 · 1.2mi · Ready now</div>
+                </div>
+                <div class="s1-dp">$39</div>
+              </div>
+              <div class="s1-book">Book Now →</div>
+              <div class="s1-nav">
+                <div class="s1-nav-i active"><span>🏠</span><span class="s1-nav-l" style="color:var(--gold)">Home</span></div>
+                <div class="s1-nav-i"><span>🔍</span><span class="s1-nav-l">Find</span></div>
+                <div class="s1-nav-i"><span>📋</span><span class="s1-nav-l">Bookings</span></div>
+                <div class="s1-nav-i"><span>👤</span><span class="s1-nav-l">Profile</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mockup-screen-label">📍 Book a Service</div>
+        <div class="mockup-screen-sub">Drop a pin, pick a pro</div>
+      </div>
+
+      <!-- PHONE 2: LIVE TRACKING -->
+      <div class="mockup-wrap reveal reveal-delay-1">
+        <div class="iphone-frame">
+          <div class="vol-notch v1"></div>
+          <div class="vol-notch v2"></div>
+          <div class="pwr-notch"></div>
+          <div class="iphone-inner">
+            <div class="dynamic-island"></div>
+            <div class="s2-bg">
+              <div class="a-status"><span>9:47</span><span>●●● 97%</span></div>
+              <div class="s2-banner">
+                <div class="s2-eta-label">Marcus is on his way</div>
+                <div class="s2-eta-time">4<span style="font-size:14px;color:rgba(255,255,255,.5)">:32</span></div>
+                <div class="s2-eta-sub">minutes until arrival</div>
+              </div>
+              <div class="s2-map">
+                <div class="s2-map-bg"></div>
+                <div class="s2-route"></div>
+                <div class="s2-dest-pin">📍</div>
+                <div class="s2-car">🚙</div>
+              </div>
+              <div style="padding:8px 14px">
+                <div style="display:flex;align-items:center;gap:4px">
+                  <div class="s2-step-dot done" style="width:18px;height:18px;font-size:8px">✓</div>
+                  <div class="s2-step-line"></div>
+                  <div class="s2-step-dot active" style="width:18px;height:18px;font-size:</div>6px">
+                  <div class="s2-step-line"></div>
+                  <div class="s2-step-dot todo" style="width:18px;height:18px;font-size:8px">○</div>
+                  <div class="s2-step-line"></div>
+                  <div class="s2-step-dot todo" style="width:18px;height:18px;font-size:8px">○</div>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-top:5px">
+                  <div style="font-size:6px;color:var(--green);font-weight:700;width:20px;text-align:center">Booked</div>
+                  <div style="font-size:6px;color:var(--gold);font-weight:700;width:32px;text-align:center">En Route</div>
+                  <div style="font-size:6px;color:rgba(255,255,255,.3);width:36px;text-align:center">Detailing</div>
+                  <div style="font-size:6px;color:rgba(255,255,255,.3);width:20px;text-align:center">Done</div>
+                </div>
+              </div>
+              <div class="s2-det-card">
+                <div class="s2-det-av">🧔<div class="s2-online"></div></div>
+                <div class="s2-det-info">
+                  <div class="s2-det-name">Marcus T.</div>
+                  <div class="s2-det-stat">★ 4.98 · 312 details completed</div>
+                </div>
+                <div class="s2-contact">
+                  <div class="s2-contact-btn">📞</div>
+                  <div class="s2-contact-btn">💬</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mockup-screen-label">🚗 Live Tracking</div>
+        <div class="mockup-screen-sub">Watch your pro arrive in real time</div>
+      </div>
+
+      <!-- PHONE 3: DETAILING PROGRESS -->
+      <div class="mockup-wrap reveal reveal-delay-2">
+        <div class="iphone-frame">
+          <div class="vol-notch v1"></div>
+          <div class="vol-notch v2"></div>
+          <div class="pwr-notch"></div>
+          <div class="iphone-inner">
+            <div class="dynamic-island"></div>
+            <div class="s3-bg">
+              <div class="a-status"><span>10:14</span><span>●●● 95%</span></div>
+              <div class="s3-head">
+                <div class="s3-title">🧽 Detailing in progress</div>
+                <div class="s3-sub">Marcus is working on your Tesla Model 3</div>
+              </div>
+              <div class="s3-ring-wrap">
+                <div class="s3-ring">
+                  <svg viewBox="0 0 80 80" width="80" height="80">
+                    <defs>
+                      <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#ffc857"/>
+                        <stop offset="100%" style="stop-color:#f5a623"/>
+                      </linearGradient>
+                    </defs>
+                    <circle class="s3-ring-bg" cx="40" cy="40" r="34"/>
+                    <circle class="s3-ring-fill" cx="40" cy="40" r="34"/>
+                  </svg>
+                  <div class="s3-pct">
+                    <div class="s3-pct-num">65%</div>
+                    <div class="s3-pct-lab">Done</div>
+                  </div>
+                </div>
+              </div>
+              <div class="s3-checklist">
+                <div class="s3-check-row done-row">
+                  <div class="s3-check-icon done-i">✓</div>
+                  <div class="s3-check-text" style="color:rgba(72,199,142,.8)">Pre-rinse &amp; foam wash</div>
+                </div>
+                <div class="s3-check-row done-row">
+                  <div class="s3-check-icon done-i">✓</div>
+                  <div class="s3-check-text" style="color:rgba(72,199,142,.8)">Hand wash &amp; rinse</div>
+                </div>
+                <div class="s3-check-row done-row">
+                  <div class="s3-check-icon done-i">✓</div>
+                  <div class="s3-check-text" style="color:rgba(72,199,142,.8)">Clay bar treatment</div>
+                </div>
+                <div class="s3-check-row active-row">
+                  <div class="s3-check-icon active-i">●</div>
+                  <div class="s3-check-text">Wax &amp; paint sealant</div>
+                </div>
+                <div class="s3-check-row">
+                  <div class="s3-check-icon todo-i">○</div>
+                  <div class="s3-check-text" style="color:rgba(255,255,255,.3)">Tire &amp; wheel dressing</div>
+                </div>
+                <div class="s3-check-row">
+                  <div class="s3-check-icon todo-i">○</div>
+                  <div class="s3-check-text" style="color:rgba(255,255,255,.3)">Final inspection</div>
+                </div>
+              </div>
+              <div class="s3-time-left">
+                <div class="s3-tl-label">⏱ Estimated time left</div>
+                <div class="s3-tl-val">~28 min</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mockup-screen-label">🧽 Live Progress</div>
+        <div class="mockup-screen-sub">Step-by-step detailing checklist</div>
+      </div>
+
+      <!-- PHONE 4: DONE + RATE -->
+      <div class="mockup-wrap reveal reveal-delay-3">
+        <div class="iphone-frame">
+          <div class="vol-notch v1"></div>
+          <div class="vol-notch v2"></div>
+          <div class="pwr-notch"></div>
+          <div class="iphone-inner">
+            <div class="dynamic-island"></div>
+            <div class="s4-bg">
+              <div class="s4-confetti">
+                <div class="conf" style="left:15%;background:var(--gold);animation-delay:0s;animation-duration:2.2s"></div>
+                <div class="conf" style="left:30%;background:#48c78e;animation-delay:.3s;animation-duration:2.5s;border-radius:50%"></div>
+                <div class="conf" style="left:50%;background:var(--gold-light);animation-delay:.6s;animation-duration:2s"></div>
+                <div class="conf" style="left:65%;background:#5b8dee;animation-delay:.1s;animation-duration:2.8s;border-radius:50%"></div>
+                <div class="conf" style="left:80%;background:var(--gold);animation-delay:.9s;animation-duration:2.3s"></div>
+                <div class="conf" style="left:45%;background:#f47c7c;animation-delay:.5s;animation-duration:2.1s;border-radius:50%"></div>
+              </div>
+              <div class="a-status" style="position:relative;z-index:10"><span>11:02</span><span>●●● 94%</span></div>
+              <div class="s4-icon">✨</div>
+              <div class="s4-title">Your car is<br>gleaming! 🚗</div>
+              <div class="s4-detail-card">
+                <div class="s4-row"><span class="s4-k">Service</span><span class="s4-v">Full Detail</span></div>
+                <div class="s4-row"><span class="s4-k">Vehicle</span><span class="s4-v">Tesla Model 3</span></div>
+                <div class="s4-row"><span class="s4-k">Duration</span><span class="s4-v">1h 44m</span></div>
+                <div class="s4-row"><span class="s4-k">Total</span><span class="s4-v" style="color:var(--gold)">$149.00</span></div>
+              </div>
+              <div class="s4-stars">
+                <div class="s4-star-prompt">How'd Marcus do?</div>
+                <div class="s4-star-row">
+                  <span class="s4-star">★</span>
+                  <span class="s4-star">★</span>
+                  <span class="s4-star">★</span>
+                  <span class="s4-star">★</span>
+                  <span class="s4-star empty">★</span>
+                </div>
+              </div>
+              <div class="s4-tip">
+                <div class="s4-tip-btn">$5</div>
+                <div class="s4-tip-btn sel">$10</div>
+                <div class="s4-tip-btn">$15</div>
+                <div class="s4-tip-btn">💬</div>
+              </div>
+              <div class="s4-done">Submit &amp; Share ✨</div>
+            </div>
+          </div>
+        </div>
+        <div class="mockup-screen-label">✨ Done &amp; Rate</div>
+        <div class="mockup-screen-sub">Rate your pro, add a tip</div>
+      </div>
+
     </div>
   </div>
 </section>
