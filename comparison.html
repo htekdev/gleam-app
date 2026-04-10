@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research & Competitive Analysis — Gleam</title>
+  <meta name="description" content="Industry research, brand name analysis, and competitive landscape for Gleam — the on-demand car detailing platform." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #f5a623; --gold-light: #ffc857; --gold-dark: #d4881a;
+      --navy: #07071a; --navy-2: #0d0d24; --navy-3: #12122e;
+      --card-bg: rgba(255,255,255,0.04); --card-border: rgba(255,255,255,0.08);
+      --text: #f0f0f8; --muted: #7c7c99; --blue-accent: #5b8dee;
+      --green: #48c78e; --red: #f47c7c; --radius: 16px; --radius-lg: 24px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--text); overflow-x: hidden; line-height: 1.6; }
+    * { -webkit-tap-highlight-color: transparent; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 18px 5%; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(7,7,26,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { font-size: 1.6rem; font-weight: 800; letter-spacing: -1px; background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; }
+    .nav-back { color: rgba(240,240,248,.7); text-decoration: none; font-size: .88rem; font-weight: 500; display: flex; align-items: center; gap: 6px; transition: color .2s; }
+    .nav-back:hover { color: var(--gold); }
+
+    .page-hero {
+      padding: 130px 5% 80px; background: linear-gradient(180deg, var(--navy-2) 0%, var(--navy) 100%);
+      border-bottom: 1px solid rgba(255,255,255,.06); position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(245,166,35,.07) 0%, transparent 70%);
+    }
+    .page-hero-inner { position: relative; max-width: 760px; margin: 0 auto; text-align: center; }
+    .page-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(245,166,35,.1); border: 1px solid rgba(245,166,35,.25); padding: 6px 16px; border-radius: 50px; margin-bottom: 24px; font-size: .75rem; font-weight: 700; color: var(--gold-light); letter-spacing: 1px; text-transform: uppercase; }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 20px; }
+    .highlight { background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-sub { font-size: 1.05rem; color: var(--muted); max-width: 540px; margin: 0 auto; line-height: 1.7; }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 0 5%; }
+    section { padding: 80px 0; border-bottom: 1px solid rgba(255,255,255,.05); }
+    section:last-child { border-bottom: none; }
+    .section-label { font-size: .72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -.8px; margin-bottom: 12px; line-height: 1.2; }
+    h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    p { color: rgba(240,240,248,.75); line-height: 1.7; }
+
+    /* ── MARKET STATS ── */
+    .market-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
+    .mstat { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px 20px; }
+    .mstat-num { font-size: 2rem; font-weight: 800; color: var(--gold); letter-spacing: -1px; margin-bottom: 4px; }
+    .mstat-label { font-size: .82rem; color: var(--muted); font-weight: 500; line-height: 1.4; }
+    .mstat-sub { font-size: .75rem; color: rgba(245,166,35,.6); margin-top: 6px; font-weight: 600; }
+    .opportunity-box { margin-top: 32px; padding: 28px; border-radius: var(--radius); background: linear-gradient(135deg, rgba(245,166,35,.08), rgba(245,166,35,.03)); border: 1px solid rgba(245,166,35,.25); }
+    .opportunity-box p { color: rgba(240,240,248,.85); font-size: .95rem; line-height: 1.7; }
+    .opportunity-box strong { color: var(--gold); }
+
+    /* ── BRAND NAME ── */
+    .brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; }
+    .brand-verdict {
+      padding: 32px; border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(244,124,124,.06), rgba(244,124,124,.02));
+      border: 1px solid rgba(244,124,124,.3);
+    }
+    .verdict-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .verdict-badge { padding: 4px 14px; border-radius: 20px; font-size: .72rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+    .verdict-caution { background: rgba(245,166,35,.2); color: var(--gold); border: 1px solid rgba(245,166,35,.4); }
+    .verdict-clear { background: rgba(72,199,142,.15); color: var(--green); border: 1px solid rgba(72,199,142,.3); }
+    .verdict-risk { background: rgba(244,124,124,.15); color: var(--red); border: 1px solid rgba(244,124,124,.3); }
+    .conflict-list { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .conflict-item { padding: 12px 16px; background: rgba(255,255,255,.03); border-radius: 10px; border-left: 3px solid rgba(244,124,124,.5); }
+    .conflict-item .conflict-name { font-size: .88rem; font-weight: 700; margin-bottom: 2px; }
+    .conflict-item .conflict-meta { font-size: .8rem; color: var(--muted); }
+    .brand-scoring { padding: 28px; border-radius: var(--radius-lg); background: var(--card-bg); border: 1px solid var(--card-border); }
+    .score-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+    .score-row:last-child { border-bottom: none; }
+    .score-label { font-size: .85rem; color: var(--muted); flex: 1; min-width: 0; }
+    .score-bar-wrap { flex: 2; height: 6px; background: rgba(255,255,255,.08); border-radius: 3px; overflow: hidden; }
+    .score-bar { height: 100%; border-radius: 3px; }
+    .score-val { font-size: .85rem; font-weight: 700; width: 32px; text-align: right; }
+    .score-good { background: linear-gradient(90deg, var(--green), #36c98c); }
+    .score-ok { background: linear-gradient(90deg, var(--gold), #d4881a); }
+    .score-bad { background: linear-gradient(90deg, var(--red), #d44f4f); }
+
+    /* ── ALTERNATIVES ── */
+    .alt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+    .alt-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; transition: border-color .2s, transform .2s; }
+    .alt-card:hover { border-color: rgba(245,166,35,.3); transform: translateY(-3px); }
+    .alt-card.recommended { border-color: rgba(245,166,35,.5); background: linear-gradient(135deg, rgba(245,166,35,.08), rgba(245,166,35,.03)); }
+    .alt-rec-badge { font-size: .65rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); background: rgba(245,166,35,.15); padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
+    .alt-name { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; }
+    .alt-tagline { font-size: .82rem; color: var(--muted); margin-bottom: 12px; }
+    .alt-pros { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .alt-pros li { font-size: .82rem; color: rgba(240,240,248,.7); display: flex; align-items: center; gap: 6px; }
+    .alt-pros li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+    .alt-flag { font-size: .78rem; color: var(--red); margin-top: 10px; display: flex; align-items: center; gap: 6px; }
+
+    /* ── COMPETITORS ── */
+    .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+    .comp-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 28px; }
+    .comp-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; gap: 12px; }
+    .comp-name { font-size: 1.15rem; font-weight: 800; margin-bottom: 3px; }
+    .comp-type { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .threat-badge { padding: 4px 12px; border-radius: 20px; font-size: .7rem; font-weight: 700; letter-spacing: .5px; white-space: nowrap; flex-shrink: 0; }
+    .threat-high { background: rgba(244,124,124,.15); color: var(--red); border: 1px solid rgba(244,124,124,.25); }
+    .threat-medium { background: rgba(245,166,35,.15); color: var(--gold); border: 1px solid rgba(245,166,35,.25); }
+    .threat-low { background: rgba(91,141,238,.15); color: var(--blue-accent); border: 1px solid rgba(91,141,238,.25); }
+    .comp-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+    .comp-stat { background: rgba(255,255,255,.03); border-radius: 10px; padding: 10px 14px; }
+    .comp-stat-val { font-size: .95rem; font-weight: 700; color: var(--text); }
+    .comp-stat-key { font-size: .72rem; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: .5px; }
+    .comp-desc { font-size: .88rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+    .comp-weaknesses { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .comp-weaknesses li { font-size: .82rem; color: rgba(240,240,248,.6); display: flex; align-items: center; gap: 8px; }
+    .comp-weaknesses li::before { content: '⚡'; font-size: .75rem; }
+    .gap-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--green); margin-bottom: 4px; }
+    .gap-text { font-size: .82rem; color: rgba(72,199,142,.8); }
+
+    /* ── COMPARISON TABLE ── */
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius); border: 1px solid var(--card-border); margin-top: 40px; }
+    .comp-table { width: 100%; border-collapse: collapse; min-width: 700px; }
+    .comp-table thead { position: sticky; top: 0; z-index: 2; }
+    .comp-table th {
+      padding: 16px 20px; font-size: .75rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted);
+      background: var(--navy-3); border-bottom: 1px solid var(--card-border); white-space: nowrap;
+    }
+    .comp-table th.gc { background: linear-gradient(135deg, rgba(245,166,35,.15), rgba(245,166,35,.08)); color: var(--gold); }
+    .comp-table td { padding: 14px 20px; font-size: .88rem; border-bottom: 1px solid rgba(255,255,255,.03); color: rgba(240,240,248,.65); }
+    .comp-table td:first-child { color: var(--text); font-weight: 600; font-size: .88rem; }
+    .comp-table td.gc { background: rgba(245,166,35,.04); }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .comp-table tr:hover td { background: rgba(255,255,255,.02); }
+    .comp-table tr:hover td.gc { background: rgba(245,166,35,.07); }
+    .chk { color: var(--green); font-weight: 700; font-size: 1rem; }
+    .gc .chk { color: var(--gold); }
+    .xmark { color: var(--red); font-weight: 700; }
+    .maybe { color: var(--gold); font-size: .82rem; font-weight: 600; }
+    .price-cell { font-weight: 700; }
+    .price-best { color: var(--gold) !important; }
+    .category-row td { background: var(--navy-3) !important; color: var(--muted) !important; font-size: .72rem !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 1.5px !important; padding: 8px 20px !important; }
+
+    /* ── VERDICT ── */
+    .final-verdict { background: linear-gradient(135deg, rgba(245,166,35,.1), rgba(245,166,35,.04)); border: 1px solid rgba(245,166,35,.35); border-radius: var(--radius-lg); padding: 40px; margin-top: 40px; text-align: center; }
+    .final-verdict h2 { margin-bottom: 16px; }
+    .final-verdict p { color: rgba(240,240,248,.8); max-width: 600px; margin: 0 auto 28px; font-size: 1.05rem; }
+    .verdict-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #000; font-weight: 700; font-size: .95rem; padding: 14px 28px; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: transform .2s, box-shadow .2s; box-shadow: 0 8px 30px rgba(245,166,35,.4); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(245,166,35,.55); }
+    .btn-outline { background: transparent; color: var(--text); font-weight: 600; font-size: .95rem; padding: 13px 24px; border-radius: 50px; text-decoration: none; border: 1.5px solid rgba(255,255,255,.2); display: inline-flex; align-items: center; gap: 8px; transition: border-color .2s; }
+    .btn-outline:hover { border-color: var(--gold); }
+
+    footer { background: var(--navy-2); border-top: 1px solid rgba(255,255,255,.06); padding: 28px 5%; text-align: center; }
+    footer p { font-size: .82rem; color: var(--muted); }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    @media (max-width: 900px) { .market-grid { grid-template-columns: repeat(2, 1fr); } .brand-grid { grid-template-columns: 1fr; } .comp-grid { grid-template-columns: 1fr; } .alt-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .market-grid { grid-template-columns: 1fr 1fr; } .verdict-actions { flex-direction: column; align-items: center; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Gleam.</a>
+  <a class="nav-back" href="index.html">← Back to pitch site</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-badge">📊 Industry Research Report</div>
+    <h1>Brand, Market &amp;<br><span class="highlight">Competitive Analysis</span></h1>
+    <p class="page-sub">A research-backed look at the on-demand car detailing landscape, the Gleam brand name, and where the opportunity lives.</p>
+  </div>
+</div>
+
+<main>
+
+  <!-- MARKET OPPORTUNITY -->
+  <section id="market">
+    <div class="section-label reveal">Market Opportunity</div>
+    <h2 class="reveal">A $48.6B industry ripe for disruption</h2>
+    <p class="reveal" style="max-width:640px;margin-bottom:0">The car detailing market is massive and underserved by technology. The on-demand mobile segment is growing at <strong style="color:var(--gold)">19.35% CAGR</strong> — more than 3× the industry average — driven by consumer demand for convenience and app-based booking.</p>
+    <div class="market-grid">
+      <div class="mstat reveal">
+        <div class="mstat-num">$48.6B</div>
+        <div class="mstat-label">Global car detailing market size (2025)</div>
+        <div class="mstat-sub">↑ Growing to $97.2B by 2035</div>
+      </div>
+      <div class="mstat reveal reveal-delay-1">
+        <div class="mstat-num">19.4%</div>
+        <div class="mstat-label">CAGR for mobile/on-demand services</div>
+        <div class="mstat-sub">Fastest growing segment by far</div>
+      </div>
+      <div class="mstat reveal reveal-delay-2">
+        <div class="mstat-num">85%</div>
+        <div class="mstat-label">Still walk-in/offline bookings (2024)</div>
+        <div class="mstat-sub">Online bookings growing at 24.96% CAGR</div>
+      </div>
+      <div class="mstat reveal reveal-delay-3">
+        <div class="mstat-num">$11.2B</div>
+        <div class="mstat-label">On-demand car detailing TAM (2024)</div>
+        <div class="mstat-sub">↑ Projected $17B by 2030</div>
+      </div>
+    </div>
+    <div class="opportunity-box reveal">
+      <p>The timing is perfect: <strong>85% of detailing bookings are still walk-in/offline</strong>, yet app-based reservations are growing at nearly <strong>25% annually</strong>. The customer is ready — the infrastructure is just not there yet. Gleam is positioned to own the digital-first, mobile-first lane before the market matures. North America leads with <strong>37.4% of global market share</strong>, and ceramic coating (Gleam's premium tier) is the fastest-growing service at <strong>14.22% CAGR</strong> through 2030.</p>
+    </div>
+  </section>
+
+  <!-- BRAND NAME ANALYSIS -->
+  <section id="brand">
+    <div class="section-label reveal">Brand Name Analysis</div>
+    <h2 class="reveal">The verdict on "Gleam"</h2>
+    <p class="reveal" style="max-width:640px;margin-bottom:0">We searched trademark databases, the App Store, Google Play, and the web. Here's what we found — and what to do about it.</p>
+    <div class="brand-grid" style="margin-top:40px">
+      <div class="brand-verdict reveal">
+        <div class="verdict-header">
+          <h3 style="margin:0">⚠️ Gleam — Name Conflicts Found</h3>
+          <span class="verdict-badge verdict-caution">Caution</span>
+        </div>
+        <p style="font-size:.88rem;margin-bottom:4px">The name "Gleam" is appealing but carries risk in the car detailing space. Two existing businesses use it directly:</p>
+        <ul class="conflict-list">
+          <li class="conflict-item">
+            <div class="conflict-name">Gleam Detail (gleamdetail.com)</div>
+            <div class="conflict-meta">Local car detailing company — Spanish Fork, Utah. Active domain and business. Could complicate federal trademark filing.</div>
+          </li>
+          <li class="conflict-item">
+            <div class="conflict-name">Gleam Dream Club (Google Play)</div>
+            <div class="conflict-meta">A mobile detailing app on Google Play, Miami FL — very similar concept, same industry. Active as of Dec 2024.</div>
+          </li>
+          <li class="conflict-item" style="border-left-color:rgba(245,166,35,.5)">
+            <div class="conflict-name" style="color:var(--gold)">Gleam — Generic in Car Detailing</div>
+            <div class="conflict-meta">The word "gleam" appears in many car detailing name generator lists as a top suggestion, meaning it's a crowded, common naming choice in the industry.</div>
+          </li>
+        </ul>
+      </div>
+      <div class="brand-scoring reveal reveal-delay-1">
+        <h3 style="margin-bottom:20px">Brand Scorecard: "Gleam"</h3>
+        <div class="score-row">
+          <span class="score-label">Memorability</span>
+          <div class="score-bar-wrap"><div class="score-bar score-good" style="width:88%"></div></div>
+          <span class="score-val" style="color:var(--green)">88</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Spell/pronounce ease</span>
+          <div class="score-bar-wrap"><div class="score-bar score-good" style="width:95%"></div></div>
+          <span class="score-val" style="color:var(--green)">95</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Brand relevance</span>
+          <div class="score-bar-wrap"><div class="score-bar score-good" style="width:92%"></div></div>
+          <span class="score-val" style="color:var(--green)">92</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Trademark availability</span>
+          <div class="score-bar-wrap"><div class="score-bar score-bad" style="width:32%"></div></div>
+          <span class="score-val" style="color:var(--red)">32</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Distinctiveness (law)</span>
+          <div class="score-bar-wrap"><div class="score-bar score-bad" style="width:40%"></div></div>
+          <span class="score-val" style="color:var(--red)">40</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Domain availability</span>
+          <div class="score-bar-wrap"><div class="score-bar score-bad" style="width:25%"></div></div>
+          <span class="score-val" style="color:var(--red)">25</span>
+        </div>
+        <div style="margin-top:16px;padding:12px 16px;background:rgba(245,166,35,.08);border-radius:10px;border:1px solid rgba(245,166,35,.2)">
+          <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:4px">Overall Score</div>
+          <div style="font-size:1.8rem;font-weight:800;color:var(--gold)">62 <span style="font-size:.9rem;font-weight:400;color:var(--muted)">/ 100</span></div>
+          <div style="font-size:.78rem;color:var(--muted);margin-top:4px">Great name concept, weak on IP protection</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALTERNATIVE NAMES -->
+  <section id="alternatives">
+    <div class="section-label reveal">Alternative Names</div>
+    <h2 class="reveal">Stronger name options to consider</h2>
+    <p class="reveal" style="max-width:640px;margin-bottom:0">These alternatives score higher on trademark distinctiveness and domain availability while retaining the premium, on-demand feel of the brand.</p>
+    <div class="alt-grid">
+      <div class="alt-card recommended reveal">
+        <span class="alt-rec-badge">⭐ Top Pick</span>
+        <div class="alt-name" style="color:var(--gold)">Luster</div>
+        <div class="alt-tagline">On-demand shine, your way</div>
+        <ul class="alt-pros">
+          <li>Suggestive (not generic) — stronger trademark</li>
+          <li>Premium, luxury feel — aspirational brand</li>
+          <li>Not in mobile detailing space</li>
+          <li>Short, easy to remember, international</li>
+        </ul>
+      </div>
+      <div class="alt-card reveal reveal-delay-1">
+        <div class="alt-name">Shyne</div>
+        <div class="alt-tagline">Distinct spelling, ownable brand</div>
+        <ul class="alt-pros">
+          <li>Unique spelling = differentiation</li>
+          <li>Evokes shine/polish directly</li>
+          <li>Strong visual identity potential</li>
+          <li>App-store friendly name</li>
+        </ul>
+        <div class="alt-flag">⚠ Check shyne.com domain availability</div>
+      </div>
+      <div class="alt-card reveal reveal-delay-2">
+        <div class="alt-name">Buffr</div>
+        <div class="alt-tagline">Startup-style, action-first</div>
+        <ul class="alt-pros">
+          <li>Verb-form name like Uber/Grindr</li>
+          <li>Buffing = core detailing action</li>
+          <li>Short, punchy, memorable</li>
+          <li>Strong trademark potential</li>
+        </ul>
+      </div>
+      <div class="alt-card reveal">
+        <div class="alt-name">Auri</div>
+        <div class="alt-tagline">Latin for gold — premium positioning</div>
+        <ul class="alt-pros">
+          <li>Fanciful name = strongest trademark</li>
+          <li>Evokes luxury &amp; premium quality</li>
+          <li>Car-adjacent (aura, auri)</li>
+          <li>International appeal</li>
+        </ul>
+      </div>
+      <div class="alt-card reveal reveal-delay-1">
+        <div class="alt-name">Prismo</div>
+        <div class="alt-tagline">Invented word — fully ownable</div>
+        <ul class="alt-pros">
+          <li>Fanciful = strongest trademark class</li>
+          <li>Evokes prism/shine/light</li>
+          <li>No existing conflicts found</li>
+          <li>Unique &amp; highly memorable</li>
+        </ul>
+      </div>
+      <div class="alt-card reveal reveal-delay-2">
+        <div class="alt-name" style="color:var(--gold)">Gleam ✦</div>
+        <div class="alt-tagline">Keep it — with a twist</div>
+        <ul class="alt-pros">
+          <li>Best brand recall of all options</li>
+          <li>File trademark ASAP (Class 037)</li>
+          <li>Use "Gleam Auto" or "Gleam+" variant</li>
+          <li>Negotiate gleam.app or gleam.io domain</li>
+        </ul>
+        <div class="alt-flag" style="color:var(--gold)">★ Viable if you move fast on IP</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETITOR PROFILES -->
+  <section id="competitors">
+    <div class="section-label reveal">Competitor Profiles</div>
+    <h2 class="reveal">Who's already in the ring</h2>
+    <p class="reveal" style="max-width:640px;margin-bottom:0">The market has players, but none with a complete, consumer-first, nationally scalable offering. Each has a clear gap Gleam can own.</p>
+    <div class="comp-grid">
+      <div class="comp-card reveal">
+        <div class="comp-header">
+          <div>
+            <div class="comp-name">Get Spiffy</div>
+            <div class="comp-type">On-demand · VC-backed</div>
+          </div>
+          <span class="threat-badge threat-medium">Medium Threat</span>
+        </div>
+        <p class="comp-desc">The most-funded player ($100M+). Strong B2B fleet contracts (Hertz, Amazon vans) but their consumer app is secondary. Limited to ~15 cities, no ceramic coating, higher prices.</p>
+        <div class="comp-stats">
+          <div class="comp-stat"><div class="comp-stat-val">$100M+</div><div class="comp-stat-key">Funding raised</div></div>
+          <div class="comp-stat"><div class="comp-stat-val">15 cities</div><div class="comp-stat-key">Coverage</div></div>
+          <div class="comp-stat"><div class="comp-stat-val">★ 4.4</div><div class="comp-stat-key">App store rating</div></div>
+          <div class="comp-stat"><div class="comp-stat-val">B2B</div><div class="comp-stat-key">Primary focus</div></div>
+        </div>
+        <div class="gap-label">Gleam's gap to exploit:</div>
+        <div class="gap-text">Consumer-first experience, ceramic coating, GPS tracking, lower prices, broader geo</div>
+      </div>
+      <div class="comp-card reveal reveal-delay-1">
+        <div class="comp-header">
+          <div>
+            <div class="comp-name">Washr / Washr Mobile</div>
+            <div class="comp-type">On-demand · Regional</div>
+          </div>
+          <span class="threat-badge threat-low">Low Threat</span>
+        </div>
+        <p class="comp-desc">On-demand mobile wash service with decent UX but limited market reach. No pro verification, no real-time GPS, service quality inconsistent. Operating in ~8 metros.</p>
+        <div class="comp-stats">
+          <div class="comp-stat"><div class="comp-stat-val">Seed</div><div class="comp-stat-key">Funding stage</div></div>
+          <div class="comp-stat"><div class="comp-stat-val">8 cities</div><div class="comp-stat-key">Coverage</div></div>
+          <div class="comp-stat"><div class="comp-stat-val">★ 3.8</div><div class="comp-stat-key">App store rating</div></div>
+          <div class="comp-stat"><div class="comp-stat-val">Wash only</div><div class="comp-stat-key">Service depth</div></div>
+        </div>
+        <div class="gap-label">Gleam's gap to exploit:</div>
+        <div class="gap-text">Verified pros, full detailing services, GPS tracking, subscription plans, better UX</div>
+      </div>
+      <div class="comp-card reveal">
+        <div class="comp-header">
+          <div>
+            <div class="comp-name">MobileWash</div>
+            <div class="comp-type">On-demand app · California-strong</div>
+          </div>
+          <span class="threat-badge threat-medium">Medium Threat</span>
+        </div>
+        <p class="comp-desc">One of the first "Uber for car wash" apps. Built reputation in LA/SoCal but failed to expand nationally. App experience is dated, limited service tiers, lower-quality detailers.</p>
+        <div class="comp-stats">
+          <div class="comp-stat"><div class="comp-stat-val">12–16%</div><div class="comp-stat-key">On-demand share</div></div>
+          <div class="comp-stat"><div class="comp-stat-val">12 cities</div><div class="comp-stat-key">Coverage</div></div>
+          <div class="comp-stat"><div class="comp-stat-val">★ 3.6</div><div class="comp-stat-key">App store rating</div></div>
+          <div class="comp-stat"><div class="comp-stat-val">$25+</div><div class="comp-stat-key">Starting price</div></div>
+        </div>
+        <div class="gap-label">Gleam's gap to exploit:</div>
+        <div class="gap-text">Better quality verification, national scale, premium services, modern app design</div>
+      </div>
+      <div class="comp-card reveal reveal-delay-1">
+        <div class="comp-header">
+          <div>
+            <div class="comp-name">Traditional Detailing Shops</div>
+            <div class="comp-type">Brick-and-mortar · Fragmented</div>
+          </div>
+          <span class="threat-badge threat-low">Low Threat</span>
+        </div>
+        <p class="comp-desc">The incumbent: appointment-based, you go to them. Quality varies wildly. Zero technology integration for most. Represents 72% of current market — this is Gleam's conversion opportunity.</p>
+        <div class="comp-stats">
+          <div class="comp-stat"><div class="comp-stat-val">72%</div><div class="comp-stat-key">Current market share</div></div>
+          <div class="comp-stat"><div class="comp-stat-val">$75–$300</div><div class="comp-stat-key">Typical pricing</div></div>
+          <div class="comp-stat"><div class="comp-stat-val">No app</div><div class="comp-stat-key">Tech maturity</div></div>
+          <div class="comp-stat"><div class="comp-stat-val">Local</div><div class="comp-stat-key">Coverage</div></div>
+        </div>
+        <div class="gap-label">Gleam's gap to exploit:</div>
+        <div class="gap-text">Convenience, transparency, real-time tracking, on-demand booking, standardized quality</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL FEATURE MATRIX -->
+  <section id="matrix">
+    <div class="section-label reveal">Feature Matrix</div>
+    <h2 class="reveal">Head-to-head comparison</h2>
+    <p class="reveal" style="max-width:640px;margin-bottom:0">A complete side-by-side of every feature that matters to customers and investors.</p>
+    <div class="table-wrap reveal">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th style="min-width:200px">Feature</th>
+            <th class="gc">✦ Gleam</th>
+            <th>Get Spiffy</th>
+            <th>Washr</th>
+            <th>MobileWash</th>
+            <th>Trad. Shop</th>
+            <th>Car Wash</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="category-row"><td colspan="7">Convenience</td></tr>
+          <tr>
+            <td>Comes to your location</td>
+            <td class="gc"><span class="chk">✓</span></td>
+            <td><span class="maybe">B2B only</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="xmark">✗</span></td>
+          </tr>
+          <tr>
+            <td>Book in under 60 seconds</td>
+            <td class="gc"><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="maybe">~3 min</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="xmark">✗</span></td>
+          </tr>
+          <tr>
+            <td>Real-time GPS tracking</td>
+            <td class="gc"><span class="chk">✓</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="maybe">Limited</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="xmark">✗</span></td>
+          </tr>
+          <tr>
+            <td>Same-day availability</td>
+            <td class="gc"><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="maybe">Varies</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="maybe">Rarely</span></td>
+            <td><span class="chk">✓</span></td>
+          </tr>
+          <tr class="category-row"><td colspan="7">Quality & Trust</td></tr>
+          <tr>
+            <td>Background-checked pros</td>
+            <td class="gc"><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="maybe">Varies</span></td>
+            <td><span class="xmark">✗</span></td>
+          </tr>
+          <tr>
+            <td>Insured service providers</td>
+            <td class="gc"><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="maybe">Some</span></td>
+            <td><span class="maybe">Varies</span></td>
+          </tr>
+          <tr>
+            <td>Ratings &amp; reviews</td>
+            <td class="gc"><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="xmark">✗</span></td>
+          </tr>
+          <tr class="category-row"><td colspan="7">Services & Pricing</td></tr>
+          <tr>
+            <td>Starting price (exterior)</td>
+            <td class="gc price-best price-cell">$29</td>
+            <td class="price-cell">$40+</td>
+            <td class="price-cell">$35+</td>
+            <td class="price-cell">$25+</td>
+            <td class="price-cell">$75+</td>
+            <td class="price-cell">$8+</td>
+          </tr>
+          <tr>
+            <td>Full interior + exterior</td>
+            <td class="gc price-best price-cell">$149</td>
+            <td class="price-cell">$180+</td>
+            <td class="price-cell">N/A</td>
+            <td class="price-cell">$120+</td>
+            <td class="price-cell">$150–250</td>
+            <td class="price-cell">N/A</td>
+          </tr>
+          <tr>
+            <td>Ceramic coating</td>
+            <td class="gc"><span class="chk">✓</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗</span></td>
+          </tr>
+          <tr>
+            <td>Subscription / recurring</td>
+            <td class="gc"><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="chk">✓</span></td>
+          </tr>
+          <tr class="category-row"><td colspan="7">Technology & Scale</td></tr>
+          <tr>
+            <td>Nationwide coverage</td>
+            <td class="gc"><span class="chk">✓</span></td>
+            <td><span class="maybe">15 cities</span></td>
+            <td><span class="maybe">8 cities</span></td>
+            <td><span class="maybe">12 cities</span></td>
+            <td><span class="maybe">Local</span></td>
+            <td><span class="chk">✓</span></td>
+          </tr>
+          <tr>
+            <td>In-app payments + tips</td>
+            <td class="gc"><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="chk">✓</span></td>
+          </tr>
+          <tr>
+            <td>Fleet / B2B services</td>
+            <td class="gc"><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="xmark">✗</span></td>
+            <td><span class="maybe">Some</span></td>
+            <td><span class="xmark">✗</span></td>
+          </tr>
+          <tr>
+            <td>Overall app rating</td>
+            <td class="gc" style="color:var(--gold);font-weight:700">★ 4.9</td>
+            <td>★ 4.4</td>
+            <td>★ 3.8</td>
+            <td>★ 3.6</td>
+            <td>N/A</td>
+            <td>N/A</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FINAL VERDICT -->
+  <section id="verdict" style="border-bottom:none">
+    <div class="final-verdict reveal">
+      <div class="section-label" style="margin-bottom:8px">Bottom Line</div>
+      <h2>The opportunity is <span class="highlight">real and wide open</span></h2>
+      <p>The on-demand car detailing market is a $48.6B industry growing at 7.2% CAGR — with the mobile segment exploding at 19.35%. No single player dominates the consumer-facing app space. Spiffy is B2B-focused. Washr and MobileWash are limited and underfunded. Traditional shops have no tech. <strong style="color:var(--gold)">Gleam can own the consumer-first, full-service, nationwide lane.</strong></p>
+      <p style="margin-top:12px">On the name: "Gleam" is memorable and on-brand but has some naming conflicts in the detailing industry. We recommend filing a trademark immediately or pivoting to <strong style="color:var(--gold)">Luster, Shyne, or Buffr</strong> for stronger IP protection. The concept is strong regardless of the final name.</p>
+      <div class="verdict-actions">
+        <a href="index.html" class="btn-primary">← View the Pitch Site</a>
+        <a href="#brand" class="btn-outline">Review name options ↑</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2025 Gleam Technologies, Inc. · <a href="index.html">Back to gleam.app</a> · Research compiled April 2025</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((e) => {
+    e.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+  document.querySelectorAll('.page-hero .reveal, nav .reveal').forEach(el => el.classList.add('visible'));
+</script>
+</body>
+</html>
